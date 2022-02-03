@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Request\SearchByIdRequest;
+use App\Request\TweetRequest;
 use App\Service\SearchByIdService;
+use App\Service\TweetService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -40,6 +42,13 @@ class TwitterApiController extends BaseController
      */
     public function indexTweet(): View|Factory|Application
     {
-        return view('Core.searchById');
+        return view('Core.tweet');
+    }
+
+    public function tweetHandler(
+        TweetRequest $request,
+        TweetService $tweetService
+    ) {
+        return $tweetService->execute($request->getDto());
     }
 }

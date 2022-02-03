@@ -15,4 +15,8 @@ return [
     'api_secret_key' => env('TWITTER_API_SECRET_KEY'),
 
     'bearer_token' => env('TWITTER_BEARER_TOKEN'),
+
+    'access_token' => env('TWITTER_ACCESS_TOKEN'),
+
+    'access_secret_token' => env('TWITTER_ACCESS_SECRET_TOKEN'),
 ];

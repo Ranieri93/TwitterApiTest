@@ -10,16 +10,18 @@
             <div class="row justify-content-center">
                 <div class="col-xl-6">
                     <div class="text-center d-flex flex-column align-items-center">
-                        <h1 class="mb-5">You can Tweet directly from here!</h1>
-                        <form class="form-subscribe mb-8" id="search_user_by_id">
+                        <h1 class="mb-5">Write something to create a tweet</h1>
+                        <form class="form-subscribe mb-8" id="create_tweet" method="post"
+                              action="{{route('tweet_handler')}}">
+                            @csrf
                             <div class="row">
                                 <div class="col">
                                     <label for="formGroupExampleInput">Write something!</label>
-                                    <input class="form-control form-control-lg" id="tweet_text" type="number"
+                                    <input class="form-control form-control-lg" id="tweet_text" type="text"
                                            name="tweet_text"/>
                                 </div>
                                 <div class="col-auto" style="display: flex;align-items: end">
-                                    <button class="btn btn-primary btn-lg" id="search_user_by_id_btn" type="submit">
+                                    <button class="btn btn-primary btn-lg" id="create_tweet_ID" type="submit">
                                         Tweet
                                     </button>
                                 </div>

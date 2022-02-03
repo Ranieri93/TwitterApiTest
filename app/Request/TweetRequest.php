@@ -2,12 +2,11 @@
 
 namespace App\Request;
 
-use App\Dto\SearchByIdDto;
+use App\Dto\TweetDto;
 use Illuminate\Foundation\Http\FormRequest;
 
-class SearchByIdRequest extends FormRequest
+class TweetRequest extends FormRequest
 {
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -16,7 +15,7 @@ class SearchByIdRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'tweet_ID' => 'required|integer|min:0',
+            'tweet_text' => 'required|string',
         ];
     }
 
@@ -28,17 +27,17 @@ class SearchByIdRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'tweet_ID.integer' => 'The ID must be an integer',
+            'tweet_text.string' => 'The input must be a string!',
         ];
     }
 
     /**
-     * @return SearchByIdDto
+     * @return TweetDto
      */
-    public function getDto(): SearchByIdDto
+    public function getDto(): TweetDto
     {
-        return SearchByIdDto::create(
-            (int)$this->get('tweet_ID')
+        return TweetDto::create(
+            (string)$this->get('tweet_text')
         );
     }
 }

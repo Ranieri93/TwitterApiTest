@@ -20,6 +20,7 @@ Route::get('/', static function () {
 Route::get('/search_by_user_ID', [\App\Http\Controllers\TwitterApiController::class, 'indexSearchByIds'])->name('search_by_ids');
 Route::post('/search_by_user_ID', [\App\Http\Controllers\TwitterApiController::class, 'searchByIdsHandler'])->name('search_by_ids_handler');
 Route::get('/tweet_something', [\App\Http\Controllers\TwitterApiController::class, 'indexTweet'])->name('tweet');
+Route::post('/tweet_something', [\App\Http\Controllers\TwitterApiController::class, 'tweetHandler'])->name('tweet_handler');
 
 
 /**
