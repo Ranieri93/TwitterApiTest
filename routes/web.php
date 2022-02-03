@@ -21,6 +21,8 @@ Route::get('/search_by_user_ID', [\App\Http\Controllers\TwitterApiController::cl
 Route::post('/search_by_user_ID', [\App\Http\Controllers\TwitterApiController::class, 'searchByIdsHandler'])->name('search_by_ids_handler');
 Route::get('/tweet_something', [\App\Http\Controllers\TwitterApiController::class, 'indexTweet'])->name('tweet');
 Route::post('/tweet_something', [\App\Http\Controllers\TwitterApiController::class, 'tweetHandler'])->name('tweet_handler');
+Route::get('/search', [\App\Http\Controllers\TwitterApiController::class, 'indexSearch'])->name('search');
+Route::post('/search', [\App\Http\Controllers\TwitterApiController::class, 'searchHandler'])->name('search_handler');
 
 
 /**

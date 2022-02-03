@@ -5811,41 +5811,121 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
 
             window.axios = (axios__WEBPACK_IMPORTED_MODULE_0___default());
             /**
+             * CONSTANTS
+             */
+
+            var btnSearchByID = document.getElementById('search_user_by_id_btn');
+            var searchIDResults = document.getElementById('search_ID_results');
+            var btnTweet = document.getElementById('create_tweet_ID');
+            var tweetResult = document.getElementById('search_tweet_results');
+            var btnSearch = document.getElementById('search_btn');
+            var searchResults = document.getElementById('search_results');
+            /**
              * FUNCTION CALL SECTION
              */
 
-            searchById();
+            if (btnSearchByID && searchIDResults) {
+                searchById();
+            }
+
+            if (btnTweet && tweetResult) {
+                showTweet();
+            }
+
+            if (btnSearch && searchResults) {
+                search();
+            }
 
             /**
              * FUNCTION SECTION
              */
 
+
             function searchById() {
                 var url = "".concat(window.location.origin, "/search_by_user_ID");
-                var btnSearchByID = document.getElementById('search_user_by_id_btn');
-                var searchIDResults = document.getElementById('search_ID_results');
-                btnSearchByID.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    window.axios.post(url, {
-                        _token: document.head.querySelector("meta[name='csrf-token']").content,
-                        tweet_ID: document.getElementById('tweet_ID').value
-                    }).then(function (response) {
-                        var data = response.data.data;
 
-                        if (searchIDResults) {
-                            console.log(searchIDResults.parentElement);
-                            console.log(searchIDResults.parentElement.querySelector('ul'));
-                            searchIDResults.parentElement.querySelector('ul').remove();
-                            var ul = document.createElement('ul');
-                            ul.classList = 'list-group';
-                            ul.innerHTML = data ? "<li class=\"list-group-item\">Testo del messaggio: ".concat(data.text, "</li>") : "<li class=\"list-group-item list-group-item-danger\">Errore : ".concat(response.data.errors[0].detail, "</li>");
-                            searchIDResults.append(ul);
-                        }
-                    })["catch"](function (err) {
-                        console.dir(err);
-                        console.log(err);
+                if (btnSearchByID) {
+                    btnSearchByID.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        window.axios.post(url, {
+                            _token: document.head.querySelector("meta[name='csrf-token']").content,
+                            tweet_ID: document.getElementById('tweet_ID').value
+                        }).then(function (response) {
+                            var data = response.data.data;
+
+                            if (searchIDResults) {
+                                searchIDResults.parentElement.querySelector('ul').remove();
+                                var ul = document.createElement('ul');
+                                ul.classList = 'list-group';
+                                ul.innerHTML = data ? "<li class=\"list-group-item\"><strong>Message text:</strong> ".concat(data.text, "</li>") : "<li class=\"list-group-item list-group-item-danger\"><strong>Err :</strong> ".concat(response.data.errors[0].detail, "</li>");
+                                searchIDResults.append(ul);
+                            }
+                        })["catch"](function (err) {
+                            console.dir(err);
+                            console.log(err);
+                        });
                     });
-                });
+                }
+            }
+
+            function showTweet() {
+                var url = "".concat(window.location.origin, "/tweet_something");
+
+                if (btnTweet) {
+                    btnTweet.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        window.axios.post(url, {
+                            _token: document.head.querySelector("meta[name='csrf-token']").content,
+                            tweet_text: document.getElementById('tweet_text').value
+                        }).then(function (response) {
+                            var data = response.data.data;
+
+                            if (tweetResult) {
+                                tweetResult.parentElement.querySelector('ul').remove();
+                                var ul = document.createElement('ul');
+                                ul.classList = 'list-group';
+                                ul.innerHTML = data ? "<li class=\"list-group-item\"> <div><strong>Tweet text:</strong> ".concat(data.text, " </div> <br> <div><strong>Tweet ID :</strong> ").concat(data.id, "</li>") : "<li class=\"list-group-item list-group-item-danger\">Err : ".concat(response.data.errors[0].detail, "</li>");
+                                tweetResult.append(ul);
+                            }
+                        })["catch"](function (err) {
+                            console.dir(err);
+                            console.log(err);
+                        });
+                    });
+                }
+            }
+
+            function search() {
+                var url = "".concat(window.location.origin, "/search");
+
+                if (btnSearch) {
+                    btnSearch.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        window.axios.post(url, {
+                            _token: document.head.querySelector("meta[name='csrf-token']").content,
+                            query_string: document.getElementById('query_string').value
+                        }).then(function (response) {
+                            var data = response.data.data;
+                            console.log(data);
+
+                            if (searchResults) {
+                                searchResults.parentElement.querySelector('ul').remove();
+                                var ul = document.createElement('ul');
+                                ul.classList = 'list-group';
+                                data.forEach(function (el) {
+                                    var li = document.createElement('li');
+                                    li.classList = 'list-group-item d-flex flex-column align-items-start mb-4';
+                                    li.innerHTML = "<div><strong>Tweet ID:</strong> ".concat(el.id, " </div> <br> <div><strong>Tweet author ID :</strong> ").concat(el.author_id, "</div> <br>\n                                <div><strong>Language :</strong> ").concat(el.lang, " </div> <br> <div><strong>Text :</strong> ").concat(el.text, "</div>");
+                                    ul.append(li);
+                                });
+                                searchResults.append(ul);
+                            }
+                        })["catch"](function (err) {
+                            console.dir(err);
+                            console.log(err);
+                        });
+                    });
+                }
             }
 
             /***/

@@ -8,24 +8,25 @@
     <header class="masthead">
         <div class="container position-relative">
             <div class="row justify-content-center">
-                <div class="col-xl-12">
+                <div class="col">
                     <div class="text-center d-flex flex-column align-items-center">
-                        <h1 class="mb-5">Write something to create a tweet</h1>
-                        <form class="form-subscribe mb-8" id="create_tweet">
+                        <h1 class="mb-5">Search recent tweets using a keyword!</h1>
+
+                        <form class="form-subscribe mb-8" id="search">
                             <div class="row">
                                 <div class="col">
-                                    <label for="formGroupExampleInput">Write something!</label>
-                                    <input class="form-control form-control-lg" id="tweet_text" type="text"
-                                           name="tweet_text"/>
+                                    <label for="query_string">Insert a query string</label>
+                                    <input class="form-control form-control-lg" id="query_string" type="text"
+                                           name="query_string"/>
                                 </div>
                                 <div class="col-auto" style="display: flex;align-items: end">
-                                    <button class="btn btn-primary btn-lg" id="create_tweet_ID" type="submit">
-                                        Tweet
+                                    <button class="btn btn-primary btn-lg" id="search_btn" type="submit">
+                                        Search
                                     </button>
                                 </div>
                             </div>
                         </form>
-                        <div id="search_tweet_results" class="row">
+                        <div id="search_results" class="row">
                             <ul class="col-4 child"></ul>
                         </div>
                     </div>

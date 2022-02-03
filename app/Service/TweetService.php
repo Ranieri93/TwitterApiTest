@@ -7,14 +7,11 @@ use App\Dto\TweetDto;
 class TweetService
 {
 
-    public function execute(TweetDto $dto)
+    /**
+     * @throws \JsonException
+     */
+    public function execute(TweetDto $dto): bool|string
     {
-//        $response = Http::withToken(config('laravel-twitter-streaming-api.access_token'))->post('https://api.twitter.com/2/tweets', [
-//            'text' => $dto->tweet_text,
-//        ]);
-//
-//        dd($response->json());
-
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
@@ -37,8 +34,8 @@ class TweetService
         ));
 
         $response = curl_exec($curl);
-
         curl_close($curl);
-        dd($response);
+
+        return $response;
     }
 }
