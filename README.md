@@ -139,8 +139,8 @@ class SearchService
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => 'GET',
             CURLOPT_HTTPHEADER => array(
-                'Authorization: Bearer ' . config('laravel-twitter-streaming-api.bearer_token'),
-                'Cookie: guest_id=v1%3A164389434401851648'
+                'Authorization: Bearer Token',
+                'Cookie:'
             ),
         ));
 
