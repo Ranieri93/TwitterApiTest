@@ -5913,9 +5913,11 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
                                 var ul = document.createElement('ul');
                                 ul.classList = 'list-group';
                                 data.forEach(function (el) {
+                                    var date = new Date(el.created_at);
+                                    var tweetDate = "".concat(date.getDate(), "/").concat(date.getMonth(), "/").concat(date.getFullYear(), " ").concat(date.getHours(), ":").concat(date.getMinutes());
                                     var li = document.createElement('li');
                                     li.classList = 'list-group-item d-flex flex-column align-items-start mb-4';
-                                    li.innerHTML = "<div><strong>Tweet ID:</strong> ".concat(el.id, " </div> <br> <div><strong>Tweet author ID :</strong> ").concat(el.author_id, "</div> <br>\n                                <div><strong>Language :</strong> ").concat(el.lang, " </div> <br> <div><strong>Text :</strong> ").concat(el.text, "</div>");
+                                    li.innerHTML = "<div><strong>Tweet Time:</strong> ".concat(tweetDate, " </div> <br> <div><strong>Tweet ID:</strong> ").concat(el.id, " </div> <br> <div><strong>Tweet author ID :</strong> ").concat(el.author_id, "</div> <br>\n                                <div><strong>Language :</strong> ").concat(el.lang, " </div> <br> <div><strong>Text :</strong> ").concat(el.text, "</div>");
                                     ul.append(li);
                                 });
                                 searchResults.append(ul);

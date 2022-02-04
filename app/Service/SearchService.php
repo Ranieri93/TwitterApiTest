@@ -3,6 +3,7 @@
 namespace App\Service;
 
 use App\Dto\SearchDto;
+use Carbon\Carbon;
 
 class SearchService
 {
@@ -14,10 +15,13 @@ class SearchService
     public function execute(
         SearchDto $dto
     ): bool|string {
+        $today = Carbon::today()->toImmutable()->format('Y-m-d');
+        $now = Carbon::now()->toImmutable()->subMinute()->format('H:i:s');
+
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-            CURLOPT_URL => 'https://api.twitter.com/2/tweets/search/recent?query=' . $dto->query_string . '&tweet.fields=text,author_id,lang',
+            CURLOPT_URL => 'https://api.twitter.com/2/tweets/search/recent?query=' . $dto->query_string . '&tweet.fields=created_at,text,author_id,lang&end_time=' . $today . 'T' . $now . '.000Z&start_time=' . $today . 'T00:01:00.000Z',
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,

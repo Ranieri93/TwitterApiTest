@@ -112,10 +112,12 @@ function search() {
                         let ul = document.createElement('ul');
                         ul.classList = 'list-group';
                         data.forEach(el => {
+                            const date = new Date(el.created_at);
+                            const tweetDate = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`;
                             let li = document.createElement('li');
                             li.classList = 'list-group-item d-flex flex-column align-items-start mb-4';
                             li.innerHTML =
-                                `<div><strong>Tweet ID:</strong> ${el.id} </div> <br> <div><strong>Tweet author ID :</strong> ${el.author_id}</div> <br>
+                                `<div><strong>Tweet Time:</strong> ${tweetDate} </div> <br> <div><strong>Tweet ID:</strong> ${el.id} </div> <br> <div><strong>Tweet author ID :</strong> ${el.author_id}</div> <br>
                                 <div><strong>Language :</strong> ${el.lang} </div> <br> <div><strong>Text :</strong> ${el.text}</div>`;
 
                             ul.append(li);

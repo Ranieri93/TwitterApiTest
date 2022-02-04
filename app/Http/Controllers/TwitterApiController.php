@@ -39,7 +39,7 @@ class TwitterApiController extends BaseController
 
 
     /**
-     * Return view to search
+     * Return view to post a tweet
      * @return Application|Factory|View
      */
     public function indexTweet(): View|Factory|Application
@@ -48,6 +48,7 @@ class TwitterApiController extends BaseController
     }
 
     /**
+     * Call service that posts a tweet
      * @param TweetRequest $request
      * @param TweetService $tweetService
      * @return bool|string
@@ -60,15 +61,25 @@ class TwitterApiController extends BaseController
         return $tweetService->execute($request->getDto());
     }
 
+    /**
+     * Returning view for recent search
+     * @return View|Factory|Application
+     */
     public function indexSearch(): View|Factory|Application
     {
         return view('Core.search');
     }
 
+    /**
+     * Calling service for daily tweets
+     * @param SearchRequest $request
+     * @param SearchService $searchService
+     * @return bool|string
+     */
     public function searchHandler(
         SearchRequest $request,
         SearchService $searchService
-    ) {
+    ): bool|string {
         return $searchService->execute($request->getDto());
     }
 }

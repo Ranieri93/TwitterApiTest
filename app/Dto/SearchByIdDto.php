@@ -2,8 +2,6 @@
 
 namespace App\Dto;
 
-use JetBrains\PhpStorm\Pure;
-
 class SearchByIdDto
 {
     public int $tweet_ID;
@@ -27,6 +25,4 @@ class SearchByIdDto
             $tweet_ID
         );
     }
-
-
 }

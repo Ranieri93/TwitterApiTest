@@ -27,9 +27,9 @@ class TweetService
                 "text": "' . $dto->tweet_text . '"
             }',
             CURLOPT_HTTPHEADER => array(
-                'Authorization: OAuth oauth_consumer_key="' . config('laravel-twitter-streaming-api.api_key') . '",oauth_token="' . config('laravel-twitter-streaming-api.access_token') . '",oauth_signature_method="HMAC-SHA1",oauth_timestamp="1643897048",oauth_nonce="TPHGncfQCd8",oauth_version="1.0",oauth_signature="qV%2Fge%2ByJn8fWCYiGWZhiGRawL78%3D"',
+                'Authorization: OAuth oauth_consumer_key="' . config('laravel-twitter-streaming-api.api_key') . '",oauth_token="' . config('laravel-twitter-streaming-api.access_token') . '",oauth_signature_method="HMAC-SHA1",oauth_timestamp="1644010646",oauth_nonce="EqTJimz7c4d",oauth_version="1.0",oauth_signature="vAs97jjtzhdf8WACvtpxY7M%2FnUA%3D"',
                 'Content-Type: application/json',
-                'Cookie: guest_id=v1%3A164389434401851648'
+                'Cookie: guest_id=v1%3A164400866500435071'
             ),
         ));
 
