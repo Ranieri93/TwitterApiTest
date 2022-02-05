@@ -105,23 +105,25 @@ function search() {
                 })
                 .then(response => {
                     const data = response.data.data;
-                    console.log(data);
-
                     if (searchResults) {
                         searchResults.parentElement.querySelector('ul').remove();
                         let ul = document.createElement('ul');
                         ul.classList = 'list-group';
-                        data.forEach(el => {
-                            const date = new Date(el.created_at);
-                            const tweetDate = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`;
-                            let li = document.createElement('li');
-                            li.classList = 'list-group-item d-flex flex-column align-items-start mb-4';
-                            li.innerHTML =
-                                `<div><strong>Tweet Time:</strong> ${tweetDate} </div> <br> <div><strong>Tweet ID:</strong> ${el.id} </div> <br> <div><strong>Tweet author ID :</strong> ${el.author_id}</div> <br>
+                        let li = document.createElement('li');
+                        li.classList = 'list-group-item d-flex flex-column align-items-start mb-4';
+                        if (data) {
+                            data.forEach(el => {
+                                const date = new Date(el.created_at);
+                                const tweetDate = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`;
+                                li.innerHTML =
+                                    `<div><strong>Tweet Time:</strong> ${tweetDate} </div> <br> <div><strong>Tweet ID:</strong> ${el.id} </div> <br> <div><strong>Tweet author ID :</strong> ${el.author_id}</div> <br>
                                 <div><strong>Language :</strong> ${el.lang} </div> <br> <div><strong>Text :</strong> ${el.text}</div>`;
-
+                                ul.append(li);
+                            })
+                        } else {
+                            li.innerHTML = `<div><strong class="text-danger">No Tweets find for this keyword! Try Again!</strong></div>`;
                             ul.append(li);
-                        })
+                        }
                         searchResults.append(ul);
                     }
                 })

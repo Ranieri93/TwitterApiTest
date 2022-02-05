@@ -51,13 +51,12 @@ class TwitterApiController extends BaseController
      * Call service that posts a tweet
      * @param TweetRequest $request
      * @param TweetService $tweetService
-     * @return bool|string
      * @throws \JsonException
      */
     public function tweetHandler(
         TweetRequest $request,
         TweetService $tweetService
-    ): bool|string {
+    ): object {
         return $tweetService->execute($request->getDto());
     }
 

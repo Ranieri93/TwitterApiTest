@@ -10,13 +10,13 @@ return [
 
     'handle' => env('TWITTER_HANDLE'),
 
-    'api_key' => env('TWITTER_API_KEY'),
+    'api_key' => env('TWITTER_CONSUMER_KEY'),
 
-    'api_secret_key' => env('TWITTER_API_SECRET_KEY'),
+    'api_secret_key' => env('TWITTER_CONSUMER_SECRET'),
 
     'bearer_token' => env('TWITTER_BEARER_TOKEN'),
 
     'access_token' => env('TWITTER_ACCESS_TOKEN'),
 
-    'access_secret_token' => env('TWITTER_ACCESS_SECRET_TOKEN'),
+    'access_secret_token' => env('TWITTER_ACCESS_TOKEN_SECRET'),
 ];
