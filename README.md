@@ -37,11 +37,12 @@ N.B. In order to make the project work you need to generate the Access and Secre
 
 5. Go in your project, open .env file and create the following variables:
 ```env
-TWITTER_API_KEY=//insert here
-TWITTER_API_SECRET_KEY=//insert here
+TWITTER_CONSUMER_KEY=//insert here
+TWITTER_CONSUMER_SECRET=//insert here
 TWITTER_BEARER_TOKEN=//insert here
 TWITTER_ACCESS_TOKEN=//insert here
-TWITTER_ACCESS_SECRET_TOKEN=//insert here
+TWITTER_ACCESS_TOKEN_SECRET=//insert here
+TWITTER_API_VERSION=2
 ``` 
 
 ## LAUNCH APP
