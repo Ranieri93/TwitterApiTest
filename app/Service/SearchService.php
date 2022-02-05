@@ -8,7 +8,7 @@ use Carbon\Carbon;
 class SearchService
 {
     /**
-     *
+     * Uses vanilla php curl handler to perform a post request and search for daily posts with a keyword
      * @param SearchDto $dto
      * @return bool|string
      */
@@ -21,7 +21,7 @@ class SearchService
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-            CURLOPT_URL => 'https://api.twitter.com/2/tweets/search/recent?query=' . $dto->query_string . '&tweet.fields=created_at,text,author_id,lang&end_time=' . $today . 'T' . $now . '.000Z&start_time=' . $today . 'T00:01:00.000Z',
+            CURLOPT_URL => 'https://api.twitter.com/2/tweets/search/recent?query=' . $dto->query_string . '&tweet.fields=created_at,text,author_id,lang&end_time=' . $today . 'T' . $now . '.000Z&start_time=' . $today . 'T00:00:10.000Z',
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,

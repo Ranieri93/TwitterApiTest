@@ -5884,7 +5884,7 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
                                 tweetResult.parentElement.querySelector('ul').remove();
                                 var ul = document.createElement('ul');
                                 ul.classList = 'list-group';
-                                ul.innerHTML = data ? "<li class=\"list-group-item\"> <div><strong>Tweet text:</strong> ".concat(data.text, " </div> <br> <div><strong>Tweet ID :</strong> ").concat(data.id, "</li>") : "<li class=\"list-group-item list-group-item-danger\">Err : ".concat(response.data.errors[0].detail, "</li>");
+                                ul.innerHTML = data ? "<div><h2>Here's your newly created Tweet!</h2></div> <br><li class=\"list-group-item\"> <div><strong>Tweet text:</strong> ".concat(data.text, " </div> <br> <div><strong>Tweet ID :</strong> ").concat(data.id, "</li>") : "<li class=\"list-group-item list-group-item-danger\">Err : ".concat(response.data.errors[0].detail, "</li>");
                                 tweetResult.append(ul);
                             }
                         })["catch"](function (err) {
@@ -5911,17 +5911,19 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
                                 searchResults.parentElement.querySelector('ul').remove();
                                 var ul = document.createElement('ul');
                                 ul.classList = 'list-group';
-                                var li = document.createElement('li');
-                                li.classList = 'list-group-item d-flex flex-column align-items-start mb-4';
 
                                 if (data) {
                                     data.forEach(function (el) {
                                         var date = new Date(el.created_at);
                                         var tweetDate = "".concat(date.getDate(), "/").concat(date.getMonth(), "/").concat(date.getFullYear(), " ").concat(date.getHours(), ":").concat(date.getMinutes());
+                                        var li = document.createElement('li');
+                                        li.classList = 'list-group-item d-flex flex-column align-items-start mb-4';
                                         li.innerHTML = "<div><strong>Tweet Time:</strong> ".concat(tweetDate, " </div> <br> <div><strong>Tweet ID:</strong> ").concat(el.id, " </div> <br> <div><strong>Tweet author ID :</strong> ").concat(el.author_id, "</div> <br>\n                                <div><strong>Language :</strong> ").concat(el.lang, " </div> <br> <div><strong>Text :</strong> ").concat(el.text, "</div>");
                                         ul.append(li);
                                     });
                                 } else {
+                                    var li = document.createElement('li');
+                                    li.classList = 'list-group-item d-flex flex-column align-items-start mb-4';
                                     li.innerHTML = "<div><strong class=\"text-danger\">No Tweets find for this keyword! Try Again!</strong></div>";
                                     ul.append(li);
                                 }

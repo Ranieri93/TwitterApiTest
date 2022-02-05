@@ -80,7 +80,7 @@ function showTweet() {
                         tweetResult.parentElement.querySelector('ul').remove();
                         let ul = document.createElement('ul');
                         ul.classList = 'list-group';
-                        ul.innerHTML = data ? `<li class="list-group-item"> <div><strong>Tweet text:</strong> ${data.text} </div> <br> <div><strong>Tweet ID :</strong> ${data.id}</li>` : `<li class="list-group-item list-group-item-danger">Err : ${response.data.errors[0].detail}</li>`
+                        ul.innerHTML = data ? `<div><h2>Here's your newly created Tweet!</h2></div> <br><li class="list-group-item"> <div><strong>Tweet text:</strong> ${data.text} </div> <br> <div><strong>Tweet ID :</strong> ${data.id}</li>` : `<li class="list-group-item list-group-item-danger">Err : ${response.data.errors[0].detail}</li>`
                         tweetResult.append(ul);
                     }
                 })
@@ -109,18 +109,20 @@ function search() {
                         searchResults.parentElement.querySelector('ul').remove();
                         let ul = document.createElement('ul');
                         ul.classList = 'list-group';
-                        let li = document.createElement('li');
-                        li.classList = 'list-group-item d-flex flex-column align-items-start mb-4';
                         if (data) {
                             data.forEach(el => {
                                 const date = new Date(el.created_at);
                                 const tweetDate = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`;
+                                let li = document.createElement('li');
+                                li.classList = 'list-group-item d-flex flex-column align-items-start mb-4';
                                 li.innerHTML =
                                     `<div><strong>Tweet Time:</strong> ${tweetDate} </div> <br> <div><strong>Tweet ID:</strong> ${el.id} </div> <br> <div><strong>Tweet author ID :</strong> ${el.author_id}</div> <br>
                                 <div><strong>Language :</strong> ${el.lang} </div> <br> <div><strong>Text :</strong> ${el.text}</div>`;
                                 ul.append(li);
                             })
                         } else {
+                            let li = document.createElement('li');
+                            li.classList = 'list-group-item d-flex flex-column align-items-start mb-4';
                             li.innerHTML = `<div><strong class="text-danger">No Tweets find for this keyword! Try Again!</strong></div>`;
                             ul.append(li);
                         }

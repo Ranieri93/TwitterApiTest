@@ -11,9 +11,11 @@ class TweetService
 {
 
     /**
+     * Uses BirdElephant to create a curl with user credentials and posts a tweet
+     * Doc https://birdelephant.com/
      * @throws \JsonException
      */
-    public function execute(TweetDto $dto)
+    public function execute(TweetDto $dto): object
     {
         $credentials = array(
             'bearer_token' => config('laravel-twitter-streaming-api.bearer_token'), // OAuth 2.0 Bearer Token requests
