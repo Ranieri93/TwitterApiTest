@@ -2,7 +2,9 @@
 
 # About this DUMMY APP
 
-This is a simple demo which is using Tittwer API!
+This is a simple demo which is using Tittwer API!<br>
+Tn there you'll be able to retrieve a post through an ID, post something with your linked account, and fetch daily tweets with a specific keyword. <br>
+Enjoy!
 
 ## PRE-REQUISITES
 
