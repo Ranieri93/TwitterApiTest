@@ -80,7 +80,11 @@ function showTweet() {
                         tweetResult.parentElement.querySelector('ul').remove();
                         let ul = document.createElement('ul');
                         ul.classList = 'list-group';
-                        ul.innerHTML = data ? `<div><h2>Here's your newly created Tweet!</h2></div> <br><li class="list-group-item"> <div><strong>Tweet text:</strong> ${data.text} </div> <br> <div><strong>Tweet ID :</strong> ${data.id}</li>` : `<li class="list-group-item list-group-item-danger">Err : ${response.data.errors[0].detail}</li>`
+                        ul.innerHTML = data ? `<div><h2>Here's your newly created Tweet!</h2></div> <br>
+                        <li class="list-group-item"> <div><strong>Tweet text:</strong> ${data.text} </div>
+                            <br> <div><strong>Tweet ID :</strong> ${data.id}</div>
+                            <br> <div>Go check on <a target="_blank" href="https://twitter.com/home">Twitter Home</a> entering with your dev account!</div>
+                            </li>` : `<li class="list-group-item list-group-item-danger">Err : ${response.data.errors[0].detail}</li>`
                         tweetResult.append(ul);
                     }
                 })

@@ -977,9 +977,15 @@ select {
     padding-left: 0.25rem;
     padding-right: 0.25rem;
 }
+
 .pt-8 {
     padding-top: 2rem;
 }
+
+.pt-4 {
+    padding-top: 1rem;
+}
+
 .pl-3 {
     padding-left: 0.75rem;
 }
@@ -991,9 +997,6 @@ select {
 }
 .pb-3 {
     padding-bottom: 0.75rem;
-}
-.pt-4 {
-    padding-top: 1rem;
 }
 .pb-1 {
     padding-bottom: 0.25rem;

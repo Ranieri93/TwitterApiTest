@@ -25,6 +25,4 @@ class SearchDto
             $query_string
         );
     }
-
-
 }
