@@ -103,7 +103,7 @@ class SearchDto
 ```
 Nothing more than a class with a property initialized in the constructor and a static method with self return, that allow us to call it easily from outside.
 
-## FROM REQUESTS
+## FORM REQUESTS
 Form requests are nothing new in Laravel ecosystem (https://laravel.com/docs/8.x/validation#form-request-validation).<br/> Their usage is basically allowing you to encapsulate validation logic coming from a request. The major upside is that they provide an easier and understandable validation (because it is localized in one place), and ultimately lift up all the work that otherwise you should do in the controller, making it leaner and lighter.<br/>
 Now that we have a class dedicated to validation, it is the perfect place to instanciate there our DTO.<br/>
 Here's an example:
