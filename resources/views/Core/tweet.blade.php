@@ -16,7 +16,14 @@
                                 <div class="col">
                                     <label for="tweet_text">Write something!</label>
                                     <textarea class="form-control" id="tweet_text" rows="3"
-                                              name="tweet_text"></textarea>
+                                              name="tweet_text" required></textarea>
+                                    @if($errors!== null && $errors->has('tweet_text') && count($errors->get('tweet_text')) > 0)
+                                        <span class="invalid-feedback" role="alert">
+                                            @foreach($errors->get('tweet_text') as $message)
+                                                <strong>{{ $message }}</strong>
+                                            @endforeach
+                                        </span>
+                                    @endif
                                 </div>
                             </div>
                             <div class="pt-4" style="display: flex;align-items: end">

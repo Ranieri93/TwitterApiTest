@@ -17,7 +17,14 @@
                                 <div class="col">
                                     <label for="formGroupExampleInput">Insert an integer</label>
                                     <input class="form-control form-control-lg" id="tweet_ID" type="number"
-                                           name="tweet_ID"/>
+                                           name="tweet_ID" required/>
+                                    @if($errors!== null && $errors->has('tweet_ID') && count($errors->get('tweet_ID')) > 0)
+                                        <span class="invalid-feedback" role="alert">
+                                            @foreach($errors->get('tweet_ID') as $message)
+                                                <strong>{{ $message }}</strong>
+                                            @endforeach
+                                        </span>
+                                    @endif
                                 </div>
                                 <div class="col-auto" style="display: flex;align-items: end">
                                     <button class="btn btn-primary btn-lg" id="search_user_by_id_btn" type="submit">

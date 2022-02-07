@@ -17,7 +17,14 @@
                                 <div class="col">
                                     <label for="query_string">Insert a query string</label>
                                     <input class="form-control form-control-lg" id="query_string" type="text"
-                                           name="query_string"/>
+                                           name="query_string" required/>
+                                    @if($errors!== null && $errors->has('query_string') && count($errors->get('query_string')) > 0)
+                                        <span class="invalid-feedback" role="alert">
+                                            @foreach($errors->get('query_string') as $message)
+                                                <strong>{{ $message }}</strong>
+                                            @endforeach
+                                        </span>
+                                    @endif
                                 </div>
                                 <div class="col-auto" style="display: flex;align-items: end">
                                     <button class="btn btn-primary btn-lg" id="search_btn" type="submit">
