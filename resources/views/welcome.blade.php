@@ -10,8 +10,8 @@
             <div class="container px-lg-5">
                 <div class="p-4 p-lg-5 bg-light rounded-3 text-center">
                     <div class="m-4 m-lg-5">
-                        <h1 class="display-5 fw-bold">HELLO! This is a dummy app linked to Twitter API, choose from the
-                            links above!</h1>
+                        <h1 class="display-5 fw-bold">HELLO! This is a dummy app linked to Twitter APIs, choose from the
+                            actions above!</h1>
                     </div>
                 </div>
             </div>

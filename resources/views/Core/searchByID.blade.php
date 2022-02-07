@@ -10,7 +10,7 @@
             <div class="row justify-content-center">
                 <div class="col-xl-6">
                     <div class="text-center d-flex flex-column align-items-center">
-                        <h1 class="mb-5">Generate more leads with a professional landing page!</h1>
+                        <h1 class="mb-5">Search a single Tweet by its ID!</h1>
 
                         <form class="form-subscribe mb-8" id="search_user_by_id">
                             <div class="row">

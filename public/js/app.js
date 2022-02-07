@@ -5816,10 +5816,13 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
 
             var btnSearchByID = document.getElementById('search_user_by_id_btn');
             var searchIDResults = document.getElementById('search_ID_results');
+            var inputSearchByID = document.getElementById('tweet_ID');
             var btnTweet = document.getElementById('create_tweet_ID');
             var tweetResult = document.getElementById('search_tweet_results');
+            var textAreaTweet = document.getElementById('tweet_text');
             var btnSearch = document.getElementById('search_btn');
             var searchResults = document.getElementById('search_results');
+            var inputQueryString = document.getElementById('query_string');
             /**
              * FUNCTION CALL SECTION
              */
@@ -5847,6 +5850,16 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
                 if (btnSearchByID) {
                     btnSearchByID.addEventListener('click', function (e) {
                         e.preventDefault();
+
+                        if (inputSearchByID.value === '') {
+                            searchIDResults.parentElement.querySelector('ul').remove();
+                            var ul = document.createElement('ul');
+                            ul.classList = 'list-group';
+                            ul.innerHTML = "<li class=\"list-group-item list-group-item-danger\">You have to insert some value before searching!</li>";
+                            searchIDResults.append(ul);
+                            return;
+                        }
+
                         window.axios.post(url, {
                             _token: document.head.querySelector("meta[name='csrf-token']").content,
                             tweet_ID: document.getElementById('tweet_ID').value
@@ -5855,14 +5868,19 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
 
                             if (searchIDResults) {
                                 searchIDResults.parentElement.querySelector('ul').remove();
-                                var ul = document.createElement('ul');
-                                ul.classList.add('list-group');
-                                ul.innerHTML = data ? "<li class=\"list-group-item\"><strong>Message text:</strong> ".concat(data.text, "</li>") : "<li class=\"list-group-item list-group-item-danger\"><strong>Err :</strong> ".concat(response.data.errors[0].detail, "</li>");
-                                searchIDResults.append(ul);
+
+                                var _ul = document.createElement('ul');
+
+                                _ul.classList = 'list-group';
+                                _ul.innerHTML = data ? "<li class=\"list-group-item\"><strong>Message text:</strong> ".concat(data.text, "</li>") : "<li class=\"list-group-item list-group-item-danger\"><strong>Err :</strong> ".concat(response.data.errors[0].detail, "</li>");
+                                searchIDResults.append(_ul);
                             }
+
+                            inputSearchByID.value = '';
                         })["catch"](function (err) {
                             console.dir(err);
                             console.log(err);
+                            inputSearchByID.value = '';
                         });
                     });
                 }
@@ -5874,6 +5892,16 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
                 if (btnTweet) {
                     btnTweet.addEventListener('click', function (e) {
                         e.preventDefault();
+
+                        if (textAreaTweet.value === '') {
+                            tweetResult.parentElement.querySelector('ul').remove();
+                            var ul = document.createElement('ul');
+                            ul.classList = 'list-group';
+                            ul.innerHTML = "<li class=\"list-group-item list-group-item-danger\">You have to insert some value before searching!</li>";
+                            tweetResult.append(ul);
+                            return;
+                        }
+
                         window.axios.post(url, {
                             _token: document.head.querySelector("meta[name='csrf-token']").content,
                             tweet_text: document.getElementById('tweet_text').value
@@ -5882,14 +5910,18 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
 
                             if (tweetResult) {
                                 tweetResult.parentElement.querySelector('ul').remove();
-                                var ul = document.createElement('ul');
-                                ul.classList.add("list-group", "justify-content-center");
-                                ul.innerHTML = data ? "<div><h2>Here's your newly created Tweet!</h2></div> <br>\n                        <li class=\"list-group-item\"> <div><strong>Tweet text:</strong> ".concat(data.text, " </div>\n                            <br> <div><strong>Tweet ID :</strong> ").concat(data.id, "</div>\n                            <br> <div>Go check on <a target=\"_blank\" href=\"https://twitter.com/home\">Twitter Home</a> entering with your dev account!</div>\n                            </li>") : "<li class=\"list-group-item list-group-item-danger\">Err : ".concat(response.data.errors[0].detail, "</li>");
-                                tweetResult.append(ul);
+
+                                var _ul2 = document.createElement('ul');
+
+                                _ul2.classList = 'list-group';
+                                _ul2.innerHTML = data ? "<div><h2>Here's your newly created Tweet!</h2></div> <br>\n                        <li class=\"list-group-item\"> <div><strong>Tweet text:</strong> ".concat(data.text, " </div>\n                            <br> <div><strong>Tweet ID :</strong> ").concat(data.id, "</div>\n                            <br> <div>Go check on <a target=\"_blank\" href=\"https://twitter.com/home\">Twitter Home</a> using your dev account!</div>\n                            </li>") : "<li class=\"list-group-item list-group-item-danger\">Err : ".concat(response.data.errors[0].detail, "</li>");
+                                tweetResult.append(_ul2);
+                                textAreaTweet.value = '';
                             }
                         })["catch"](function (err) {
                             console.dir(err);
                             console.log(err);
+                            textAreaTweet.value = '';
                         });
                     });
                 }
@@ -5901,6 +5933,16 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
                 if (btnSearch) {
                     btnSearch.addEventListener('click', function (e) {
                         e.preventDefault();
+
+                        if (inputQueryString.value === '') {
+                            searchResults.parentElement.querySelector('ul').remove();
+                            var ul = document.createElement('ul');
+                            ul.classList = 'list-group';
+                            ul.innerHTML = "<li class=\"list-group-item list-group-item-danger\">You have to insert some value before searching!</li>";
+                            searchResults.append(ul);
+                            return;
+                        }
+
                         window.axios.post(url, {
                             _token: document.head.querySelector("meta[name='csrf-token']").content,
                             query_string: document.getElementById('query_string').value
@@ -5909,26 +5951,33 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
 
                             if (searchResults) {
                                 searchResults.parentElement.querySelector('ul').remove();
-                                var ul = document.createElement('ul');
-                                ul.classList = 'list-group';
+
+                                var _ul3 = document.createElement('ul');
+
+                                _ul3.classList = 'list-group';
 
                                 if (data) {
                                     data.forEach(function (el) {
                                         var date = new Date(el.created_at);
                                         var tweetDate = "".concat(date.getDate(), "/").concat(date.getMonth(), "/").concat(date.getFullYear(), " ").concat(date.getHours(), ":").concat(date.getMinutes());
                                         var li = document.createElement('li');
-                                        li.classList.add("list-group-item", "d-flex", "flex-column", "align-items-start", "mb-4");
+                                        li.classList = 'list-group-item d-flex flex-column align-items-start mb-4';
                                         li.innerHTML = "<div><strong>Tweet Time:</strong> ".concat(tweetDate, " </div> <br> <div><strong>Tweet ID:</strong> ").concat(el.id, " </div> <br> <div><strong>Tweet author ID :</strong> ").concat(el.author_id, "</div> <br>\n                                <div><strong>Language :</strong> ").concat(el.lang, " </div> <br> <div><strong>Text :</strong> ").concat(el.text, "</div>");
-                                        ul.append(li);
+
+                                        _ul3.append(li);
                                     });
+                                    inputQueryString.value = '';
                                 } else {
                                     var li = document.createElement('li');
                                     li.classList = 'list-group-item d-flex flex-column align-items-start mb-4';
                                     li.innerHTML = "<div><strong class=\"text-danger\">No Tweets find for this keyword! Try Again!</strong></div>";
-                                    ul.append(li);
+
+                                    _ul3.append(li);
+
+                                    inputQueryString.value = '';
                                 }
 
-                                searchResults.append(ul);
+                                searchResults.append(_ul3);
                             }
                         })["catch"](function (err) {
                             console.dir(err);
