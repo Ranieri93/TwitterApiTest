@@ -14,6 +14,11 @@ Enjoy!
 
 These are mandatory to run the project
 
+**N.B.** <br>During composer installation you must provide a file path to PHP version, therefore while downloading it be sure to choose the correct one for your OS. <br> Otherwise you can use a dev PHP environment such as XAMPP and you'll easily find what you need in: 
+```
+C:\xampp\php\php.exe
+```
+
 ## SETTING UP
 
 1. Clone the repository.
@@ -63,15 +68,15 @@ A local server should be provided out of the box. Visit the link and enjoy!
 
 # APPROACH
 
-Here will be explained best practices used in writing this small application
+In this section there will be explained best practices used in writing this small application
 
 ## GENERAL INFOS
 
-The project is based on the well known PHP Framework Laravel (https://laravel.com/).<br> It has been used as a starting set up, then personalizations has been added, and in this section they will be shortly explained.
+The project is based on the well known PHP Framework Laravel (https://laravel.com/).<br> It has been used as a starting set up, then personalizations have been added, and shortly explained.
 
 ## DATA TRANSFER OBJECTS (DTO)
 
-As the name suggests, these are basically carriers of informations. Their general purpose is to move data from a place to another without losing its consistency.<br/>
+As the name suggests, they are basically carriers of informations. Their general purpose is to move data from a place to another without losing its consistency.<br/>
 They should not contain any business logic, but they may execute some kind of serialization/deserialisation processes or validations of any kind.
 
 In this specific case one exapmle could be:
@@ -105,7 +110,7 @@ Nothing more than a class with a property initialized in the constructor and a s
 
 ## FORM REQUESTS
 Form requests are nothing new in Laravel ecosystem (https://laravel.com/docs/8.x/validation#form-request-validation).<br/> Their usage is basically allowing you to encapsulate validation logic coming from a request. The major upside is that they provide an easier and understandable validation (because it is localized in one place), and ultimately lift up all the work that otherwise you should do in the controller, making it leaner and lighter.<br/>
-Now that we have a class dedicated to validation, it is the perfect place to instanciate there our DTO.<br/>
+This is the perfect place for our DTO. <br/>
 Here's an example:
 ```php
 class SearchRequest extends FormRequest
@@ -146,13 +151,13 @@ class SearchRequest extends FormRequest
 }
 ```
 It has been created a method getDto() (it will be common in every form request) that instanciate our DTO calling its static create method.<br>
-We have created a second layer of validation, the first one it's performed automatically by the Laravel's request rules, and the second one by our DTO.
+What we have is a second layer of validation, the first one it's performed automatically by the Laravel's request rules, and the second one by our DTO.
 
 
 ## SERVICES
 
 They have been used in their easiest and common practice, in the sense that the controller which have been in contact with some request, delegates some process to these objects.
-The idea is that your business logic is separated from your dispatcher logic and that results in a leaner and understandable statement. Services usually have to be as atomic as possibile they should in fact execute one single task, in order to maximize their reusability and therefore code maintainability.
+The idea is that your business logic is separated from your dispatcher logic and that results in a leaner and understandable statement. Services usually have to be as atomic as possibile: they should in fact execute one single task, in order to maximize their reusability and therefore code maintainability.
 <br>
 Here's a controller method which is being injected with a form request and the service itself. As the name suggests the controller has only to handle and organize, it calls service's execute method providing it the requested DTO
 
@@ -211,4 +216,4 @@ class SearchService
 ```
 This method is exepting our DTO as parameter, so we don't need to worry about input's correctness, and executing one single task, which is performing a curl call and returning a response.
 <br>
-In this dummy application, because of the poor complexity, you may not fully understand the upsides of this approach, but for example think about scheduling a cron which performs the same action: you just need to instantiate the dto again with correct parameters, call this service and you are done!
+In this dummy application, because of the poor complexity, you may not fully understand the upsides of this approach, but just think about scheduling a cron which is doing the same action: you just need to instantiate the dto again with right parameters, call this service and you are good to go!
